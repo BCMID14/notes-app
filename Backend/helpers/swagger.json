@@ -1,0 +1,294 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "version": "1.0.0",
+      "title": "My notes API",
+      "description": "to take notes api"
+    },
+    "tags": [
+      {
+          "name": "Get all notes",
+          "description": "HTTP requests concerning all notes."
+      },
+      {
+          "name": "Create note",
+          "description": "HTTP requests concerning create a note."
+      },
+      {
+          "name": "Get one note",
+          "description": "HTTP requests concerning get one note."
+      },
+      {
+          "name": "Modify the note",
+          "description": "HTTP requests concerning update the note."
+      },
+      {
+          "name": "Delete a note",
+          "description": "HTTP requests concerning delete a note."
+      }
+  ],
+  "paths": {
+      "/": {
+        "get": {
+           "tags": ["Get all notes"],
+            "summary": "get all posts",
+            "description": "Returns an array of objects with notes.",
+            "operationid": "findAll",
+            "responses": {
+              "200": {
+                "description": "Returns a JSON object with notes",
+                "content": {
+                  "application/json": {
+                    "schema": {"$ref": "#/components/schemas/Get all notes"}
+                  }
+                }
+              },
+              "404": {
+                "description": "Notes cannot be found."
+              }
+            }
+        }
+      },
+    "new_note":  {
+        "post": {
+           "tags": ["Create note"],
+            "summary": "create a new note.",
+            "description": "Returns an array of objects with note.",
+            "operationid": "create",
+            "responses": {
+              "200": {
+                "content": {
+                  "application/json": {
+                    "schema": {"$ref": "#/components/schemas/Create a note"}
+                  }
+                }
+              },
+              "404": {
+                "description": "Notes cannot be found."
+              }
+            }
+        }
+      },
+    "/note/:id": {
+        "get": {
+            "tags": ["Get one note"],
+            "summary": "get all posts",
+            "description": "Returns an array of objects with notes.",
+            "operationid": "findByPk",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Note's id to find.",
+                    "required": "true",
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                "description": "Returns a JSON object with notes",
+                "content": {
+                    "application/json": {
+                    "schema": {"$ref": "#/components/schemas/Get one note"}
+                    }
+                }
+                },
+                "404": {
+                "description": "Notes cannot be found."
+                }
+            }
+        }
+      },
+    "/modify/:id": {
+        "patch": {
+            "tags": ["Modify the note"],
+            "summary": "get all posts",
+            "description": "Returns an array of objects with notes.",
+            "operationid": "modify",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Note's id to find.",
+                    "required": "true",
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                "description": "Returns a JSON object with notes",
+                "content": {
+                    "application/json": {
+                    "schema": {"$ref": "#/components/schemas/Update the note"}
+                    }
+                }
+                },
+                "404": {
+                "description": "Notes cannot be found."
+                }
+            }
+        }
+      },
+    "/delete/:id": {
+        "patch": {
+            "tags": ["Delete a note"],
+            "summary": "get all posts",
+            "description": "Returns an array of objects with notes.",
+            "operationid": "delete",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Note's id to find.",
+                    "required": "true",
+                    "schema": {
+                        "type": "integer"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                "description": "Returns a JSON object with notes",
+                "content": {
+                    "application/json": {
+                    "schema": {"$ref": "#/components/schemas/Delete a note"}
+                    }
+                }
+                },
+                "404": {
+                "description": "Notes cannot be found."
+                }
+            }
+        }
+      }
+  },
+  "components": {
+    "schemas": {
+        "Get all notes": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": "3"
+                },
+                "title": {
+                    "type" : "sting",
+                    "example": "my best note",
+                    "required": "true"
+                },
+                "subtitle": {
+                    "type" : "sting",
+                    "example": "the car is better",
+                    "required": "false"
+                },
+                "body": {
+                    "type" : "sting",
+                    "example": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page.",
+                    "required": "true"
+                }
+            }
+        },
+        "Create a note": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": "3"
+                },
+                "title": {
+                    "type" : "sting",
+                    "example": "my best note",
+                    "required": "true"
+                },
+                "subtitle": {
+                    "type" : "sting",
+                    "example": "the car is better",
+                    "required": "false"
+                },
+                "body": {
+                    "type" : "sting",
+                    "example": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page.",
+                    "required": "true"
+                }
+            }
+        },
+        "Get one note": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": "3"
+                },
+                "title": {
+                    "type" : "sting",
+                    "example": "my best note",
+                    "required": "true"
+                },
+                "subtitle": {
+                    "type" : "sting",
+                    "example": "the car is better",
+                    "required": "false"
+                },
+                "body": {
+                    "type" : "sting",
+                    "example": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page.",
+                    "required": "true"
+                }
+            }
+        },
+        "Update the note": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": "3"
+                },
+                "title": {
+                    "type" : "sting",
+                    "example": "my best note",
+                    "required": "true"
+                },
+                "subtitle": {
+                    "type" : "sting",
+                    "example": "the car is better",
+                    "required": "false"
+                },
+                "body": {
+                    "type" : "sting",
+                    "example": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page.",
+                    "required": "true"
+                }
+            }
+        },
+        "Delete a note": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": "3"
+                },
+                "title": {
+                    "type" : "sting",
+                    "example": "my best note",
+                    "required": "true"
+                },
+                "subtitle": {
+                    "type" : "sting",
+                    "example": "the car is better",
+                    "required": "false"
+                },
+                "body": {
+                    "type" : "sting",
+                    "example": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page.",
+                    "required": "true"
+                }
+            }
+        }
+    }
+  }
+
+  }
