@@ -3,7 +3,7 @@ BEGIN;
 
 DROP TABLE IF EXISTS "user", "my_notes";
 
-CREATE TABLE "my_notes" (
+CREATE TABLE "user" (
     "id" INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "fistname" TEXT NOT NULL,
     "lastname" TEXT NOT NULL,
@@ -18,6 +18,7 @@ CREATE TABLE "my_notes" (
     "title" TEXT NOT NULL,
     "subtitle" TEXT,
     "body" TEXT NOT NULL,
+    "user_id" INTEGER NOT NULL REFERENCES "user"("id"),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
