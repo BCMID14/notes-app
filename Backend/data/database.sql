@@ -1,4 +1,5 @@
 -- Deploy notes:init to pg
+BEGIN;
 
 DROP TABLE IF EXISTS "user", "my_notes";
 
@@ -20,3 +21,5 @@ CREATE TABLE "my_notes" (
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
+
+COMMIT;
