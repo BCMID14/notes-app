@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const swaggerUi = require("swagger-ui-express");
 const app = express();
+const cors = require('cors');
 const port = process.env.PORT || 3300;
 
 const router = require('./App/routers');
@@ -24,6 +25,11 @@ app.use((request, response, next) => {
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
 });
+
+// app.use(cors({
+//   origin: "https://myNote.com"
+// }));
+
 
 
 // Middlewares setup

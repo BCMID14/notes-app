@@ -2,7 +2,6 @@ const debug = require('debug')('notes:dataMapper');
 const client = require('./helpers/database');
 
 /** Class representing an abstract data mapper. */
-
 class CoreDataMapper {
   static tableName;
   static viewName; // if viewName is defined, it will be used for find methods

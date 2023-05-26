@@ -18,3 +18,6 @@ class NotesController extends CoreController {
 }
 
 module.exports = new NotesController();
+
+
+

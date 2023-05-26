@@ -1,4 +1,6 @@
 const debug = require('debug')('notes:controllers');
+const sanitizeHtml = require('sanitize-html');
+const { noteValidate } = require('../validation/data.schema');
 
 /** Class representing an abstract core controller. */
 class CoreController {
@@ -37,7 +39,15 @@ class CoreController {
    */
   async create(request, response) {
     debug(`${this.constructor.name} create`);
+
+    noteValidate.validateAsync(request.body);
+
     const {title, subtitle, body} = request.body;
+
+    const cleanTitle = sanitizeHtml(title);
+    const cleanSubtitle = sanitizeHtml(subtitle);
+    const cleanBody = sanitizeHtml(body);
+
     const results = await this.constructor.dataMapper.create(title, subtitle, body);
      response.json(results);
   }
@@ -51,7 +61,15 @@ class CoreController {
   async modify(request, response) {
     debug(`${this.constructor.name} modify`);
     const { id } = request.params;
+
+    noteValidate.validateAsync(request.body);
+
     const {title, subtitle, body} = request.body;
+
+    const cleanTitle = sanitizeHtml(title);
+    const cleanSubtitle = sanitizeHtml(subtitle);
+    const cleanBody = sanitizeHtml(body);
+    
     const results = await this.constructor.dataMapper.modify(title, subtitle, body, id);
     response.status(200).json(results);
   }
